@@ -1,19 +1,20 @@
 package org.askdn.emoai;
 
 import android.content.Context;
+import android.graphics.Camera;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import org.askdn.emoai.camera.CameraActivity;
+
+import java.util.concurrent.TimeUnit;
+
+import rx.Observable;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class Launcher extends AppCompatActivity {
-
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        return super.onContextItemSelected(item);
-    }
 
     // Used to load the 'native-lib' library on application startup.
     static {
@@ -23,9 +24,10 @@ public class Launcher extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Using ChristenJinx's Calligraphy, the application wide default font is set
-        setCustomApplicationFont();
         setContentView(R.layout.activity_launcher);
+
+        Observable.timer(1, TimeUnit.SECONDS)
+                .subscribe(__ -> CameraActivity.start(this));
     }
 
     @Override
@@ -33,11 +35,6 @@ public class Launcher extends AppCompatActivity {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
-    private void setCustomApplicationFont() {
-        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                .setDefaultFontPath("fonts/NovaMono.ttf")
-                .setFontAttrId(R.attr.fontPath).build());
 
-    }
 
 }
