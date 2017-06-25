@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Emo.ai</string>
     <string name="release_version">Alpha</string>
-    <string name="str_choose_picture_from">Choose a picture</string>
+    <string name="str_choose_picture_from">Choose a picture using:</string>
     <string name="str_take_a_picture">Take a Picture</string>
     <string name="str_choose_from_gallery">Select from Gallery</string>
     <string name="title_activity_image_select">ImageSelect</string>
